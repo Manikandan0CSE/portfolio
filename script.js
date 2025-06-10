@@ -1,8 +1,8 @@
-// Wait for the DOM to be fully loaded
+
 document.addEventListener('DOMContentLoaded', function() {
   'use strict';
 
-  // Elements
+
   const navbar = document.querySelector('.navbar');
   const navLinks = document.querySelectorAll('.nav-link');
   const backToTop = document.querySelector('.back-to-top');
@@ -13,12 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const contactBtn = document.querySelector('.contact-btn');
   const contactForm = document.querySelector('.contact-form');
   
-  // Initialize animations on page load
+ 
   setTimeout(() => {
     document.body.classList.add('loaded');
   }, 300);
 
-  // Function to check if element is in viewport
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
@@ -27,9 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     );
   }
   
-  // Function to handle scroll events
   function handleScroll() {
-    // Add/remove scrolled class to navbar
     if (window.scrollY > 50) {
       navbar.classList.add('scrolled');
       backToTop.classList.add('active');
@@ -38,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
       backToTop.classList.remove('active');
     }
     
-    // Highlight active nav link based on scroll position
     let current = '';
     
     sections.forEach(section => {
@@ -56,8 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         link.classList.add('active');
       }
     });
-    
-    // Trigger animations when elements come into view
     animatedElements.forEach(element => {
       if (isInViewport(element) && !element.classList.contains('animated')) {
         element.classList.add('animated');
@@ -66,10 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Add scroll event listener
   window.addEventListener('scroll', handleScroll);
-  
-  // Smooth scrolling for navigation links
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -89,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Contact button click handler
   if (contactBtn) {
     contactBtn.addEventListener('click', function() {
       const contactSection = document.querySelector('#contact');
@@ -102,29 +93,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Form submission handling
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Get form data
       const name = this.querySelector('#name').value;
       const email = this.querySelector('#email').value;
       const message = this.querySelector('#message').value;
       
-      // Simple validation
       if (!name || !email || !message) {
         alert('Please fill in all fields');
         return;
       }
       
-      // Here you would typically send the form data to a server
-      // For demo purposes, we'll just show a success message
       
-      // Clear form
       this.reset();
       
-      // Show success message
       const formContainer = this.parentElement;
       const successMessage = document.createElement('div');
       successMessage.className = 'alert-success';
@@ -136,15 +120,13 @@ document.addEventListener('DOMContentLoaded', function() {
       successMessage.style.borderRadius = '5px';
       successMessage.style.textAlign = 'center';
       formContainer.appendChild(successMessage);
-      
-      // Remove success message after 5 seconds
+     
       setTimeout(() => {
         successMessage.remove();
       }, 5000);
     });
   }
   
-  // Project card hover effects
   const projectCards = document.querySelectorAll('.project-card');
   projectCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
@@ -156,7 +138,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Skill card hover effects
   const skillCards = document.querySelectorAll('.skill-card');
   skillCards.forEach(card => {
     card.addEventListener('mouseenter', function() {
@@ -168,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Typing animation for the main heading
   function setupTypingAnimation() {
     const heading = document.querySelector('.profile-content h1');
     if (heading) {
@@ -193,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Parallax effect for background elements
   function parallaxEffect() {
     document.addEventListener('mousemove', function(e) {
       const moveX = (e.clientX - window.innerWidth / 2) / 25;
@@ -205,12 +184,10 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-  
-  // Initialize animations
   function initAnimations() {
-    // Add a slight delay to ensure elements are properly loaded
+ 
     setTimeout(() => {
-      // Trigger initial animations
+
       animatedElements.forEach(element => {
         if (isInViewport(element)) {
           element.classList.add('animated');
@@ -218,27 +195,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
       
-      // Setup additional animations
-      // parallaxEffect();
-      // setupTypingAnimation();
+     
     }, 500);
   }
-  
-  // Call initial functions
+ 
   handleScroll();
   initAnimations();
   
-  // Add resize event listener to handle responsive adjustments
   window.addEventListener('resize', function() {
     handleScroll();
   });
   
-  // Add a class to body when page is fully loaded
   window.addEventListener('load', function() {
     document.body.classList.add('page-loaded');
   });
   
-  // Preload images for smoother animations
   function preloadImages() {
     const images = document.querySelectorAll('img');
     images.forEach(img => {
@@ -253,21 +224,17 @@ document.addEventListener('DOMContentLoaded', function() {
   preloadImages();
 });
 
-// Additional animation effects
 document.addEventListener('DOMContentLoaded', function() {
-  // Animate skill cards with staggered delay
   const skillCards = document.querySelectorAll('.skill-card');
   skillCards.forEach((card, index) => {
     card.style.animationDelay = `${0.1 * index}s`;
   });
   
-  // Animate project cards with staggered delay
   const projectCards = document.querySelectorAll('.project-card');
   projectCards.forEach((card, index) => {
     card.style.animationDelay = `${0.2 * index}s`;
   });
   
-  // Add wave animation to the character in about section
   const aboutImage = document.querySelector('.about-image img');
   if (aboutImage) {
     aboutImage.addEventListener('mouseenter', function() {
@@ -278,8 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
       this.style.animation = 'bounce 3s ease-in-out infinite';
     });
   }
-  
-  // Add scroll reveal animations
   function revealOnScroll() {
     const elements = document.querySelectorAll('.section');
     
